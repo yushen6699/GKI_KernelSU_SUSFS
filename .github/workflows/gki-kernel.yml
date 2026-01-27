@@ -372,8 +372,11 @@ jobs:
           if [ ! -z "${{ vars.MANAGER_STR }}" ]; then
             cd "$CONFIG"
             cd ./KernelSU
-            sed -i 's/\(v\$1-\).*\(@\$\)/\1${{ vars.MANAGER_STR }}\2/' ./kernel/Makefile 
+            sed -i 's/\(v\$1-\).*\(@builtin\)/\1@小御/' ./kernel/Makefile 
             sed -n '50,70p' ./kernel/Makefile
+
+            echo "=== Makefile修改后的完整内容 ==="
+            cat -n ./kernel/Makefile
           fi
 
       - name: 为 KernelSU 变体安装 SUSFS 补丁
